@@ -22,6 +22,7 @@ public class Tile {
      * return -1 if the given tile has higher value
      */
     public int compareTo(Tile t) {
+<<<<<<< Updated upstream
        if( t.value < value ){
            return 1;
        }
@@ -32,6 +33,9 @@ public class Tile {
            return -1;
 
        }
+=======
+        
+>>>>>>> Stashed changes
     }
 
     /*
