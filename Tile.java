@@ -9,22 +9,29 @@ public class Tile {
         this.value = value;
     }
 
-    /*
-     * TODO: should check if the given tile t and this tile have the same value 
+    /* 
      * return true if they are matching, false otherwise
      */
     public boolean matchingTiles(Tile t) {
-        return false;
+        return value == t.value;
     }
 
     /*
-     * TODO: should compare the order of these two tiles
      * return 1 if given tile has smaller in value
      * return 0 if they have the same value
      * return -1 if the given tile has higher value
      */
     public int compareTo(Tile t) {
-       return 0;
+       if( t.value < value ){
+           return 1;
+       }
+       else if(value == t.value){
+           return 0;
+       }
+       else{
+           return -1;
+
+       }
     }
 
     /*
