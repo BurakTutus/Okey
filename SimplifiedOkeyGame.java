@@ -34,9 +34,9 @@ public class SimplifiedOkeyGame {
     public void distributeTilesToPlayers() {
         for(int i = 0; i < 15; i++)
         {
-            players[1].playerTiles[i] = tiles[i];
+            players[0].playerTiles[i] = tiles[i];
         }
-        for(int i = 0; i < 3; i++)
+        for(int i = 1; i < 4; i++)
         {
             for(int j = 0; j < 14; j++)
             {
