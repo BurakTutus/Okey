@@ -22,7 +22,6 @@ public class Tile {
      * return -1 if the given tile has higher value
      */
     public int compareTo(Tile t) {
-<<<<<<< Updated upstream
        if( t.value < value ){
            return 1;
        }
@@ -33,13 +32,10 @@ public class Tile {
            return -1;
 
        }
-=======
-        
->>>>>>> Stashed changes
     }
 
     /*
-     * TODO: should determine if this tile and given tile can form a chain together
+     * 
      * this method should check the difference in values of the two tiles
      * should return true if the absoulute value of the difference is 1 (they can form a chain)
      * otherwise, it should return false (they cannot form a chain)
