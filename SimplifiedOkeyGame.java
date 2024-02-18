@@ -62,7 +62,19 @@ public class SimplifiedOkeyGame {
      * returns the toString method of the tile so that we can print what we picked
      */
     public String getTopTile() {
-        return null;
+        Tile lastile = tiles[tiles.length - 1];
+        Tile [] temp = new Tile[tiles.length - 1];
+        for(int i = 0; i < temp.length; i++)
+        {
+            temp[i] = tiles[i];
+        }
+        tiles = new Tile[temp.length];
+        for(int i = 0; i < temp.length; i++)
+        {
+            tiles[i] = temp[i];
+        }
+        this.players[getCurrentPlayerIndex()].addTile(lastile);
+        return lastile.toString();
     }
 
     /*
