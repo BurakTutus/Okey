@@ -36,12 +36,14 @@ public class SimplifiedOkeyGame {
         {
             players[0].playerTiles[i] = tiles[i];
         }
+        players[0].numberOfTiles = 15;
         for(int i = 1; i < 4; i++)
         {
             for(int j = 0; j < 14; j++)
             {
                 players[i].playerTiles[j] = tiles[15 + j];
             }
+            players[i].numberOfTiles = 14;
         }
 
     }
@@ -136,7 +138,13 @@ public class SimplifiedOkeyGame {
      * by checking if it increases the longest chain length, if not get the top tile
      */
     public void pickTileForComputer() {
-
+        int tempChain = players[currentPlayerIndex].findLongestChain();
+        this.getLastDiscardedTile();
+        if(tempChain == players[currentPlayerIndex].findLongestChain())
+        {
+            players[currentPlayerIndex].getAndRemoveTile(players[currentPlayerIndex].findPositionOfTile(lastDiscardedTile));
+            this.getTopTile();
+        }
     }
 
     /*
