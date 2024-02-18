@@ -27,7 +27,7 @@ public class SimplifiedOkeyGame {
     }
 
     /*
-     * TODO: distributes the starting tiles to the players
+     * 
      * player at index 0 gets 15 tiles and starts first
      * other players get 14 tiles, this method assumes the tiles are already shuffled
      */
