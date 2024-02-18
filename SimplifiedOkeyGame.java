@@ -52,7 +52,8 @@ public class SimplifiedOkeyGame {
      * it should return the toString method of the tile so that we can print what we picked
      */
     public String getLastDiscardedTile() {
-        return null;
+        this.players[getCurrentPlayerIndex()].addTile(lastDiscardedTile);
+        return lastDiscardedTile.toString();
     }
 
     /*
@@ -96,6 +97,11 @@ public class SimplifiedOkeyGame {
      * finished the game. use checkWinning method of the player class to determine
      */
     public boolean didGameFinish() {
+        for(Player p:players){
+            if(p.checkWinning()){
+                return true;
+            }
+        }
         return false;
     }
 
@@ -105,6 +111,13 @@ public class SimplifiedOkeyGame {
     public Player[] getPlayerWithHighestLongestChain() {
         Player[] winners = new Player[1];
 
+        winners[0] = players[0];
+        for(int i=1; i<players.length; i++){
+            if(winners[0].findLongestChain()<players[i].findLongestChain()){
+                winners[0] = players[i];
+            }
+
+        }
         return winners;
     }
     
@@ -140,7 +153,7 @@ public class SimplifiedOkeyGame {
      * that player's tiles
      */
     public void discardTile(int tileIndex) {
-
+        lastDiscardedTile = players[getCurrentPlayerIndex()].getAndRemoveTile(tileIndex);
     }
 
     public void displayDiscardInformation() {
