@@ -80,6 +80,10 @@ public class ApplicationMain {
 
                     // TODO: make sure the given index is correct, should be 0 <= index <= 14
 
+                    while(playerChoice>14 || playerChoice<0){
+                        System.out.println("Index is not valid");
+                        playerChoice = sc.nextInt();
+                    }
                     game.discardTile(playerChoice);
                     game.passTurnToNextPlayer();
                 }
