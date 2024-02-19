@@ -53,6 +53,20 @@ public class Player {
      * then shift the remaining tiles to the right by one
      */
     public void addTile(Tile t) {
+        boolean done = false;
+        for(int i=0; i<playerTiles.length; i++){
+            if(playerTiles[i].compareTo(t)<=0 && !done){
+                Tile tempTile = playerTiles[i];
+                playerTiles[i] = t;
+                
+                for(int j=i; j<playerTiles.length-1; j++){
+                    Tile tempTile2 = playerTiles[j+1];
+                    playerTiles[j+1] = tempTile;
+                    tempTile = tempTile2;
+                }
+                done = true;
+            }
+        }
 
     }
 
