@@ -147,7 +147,53 @@ public class SimplifiedOkeyGame {
      * you may choose based on how useful each tile is
      */
     public void discardTileForComputer() {
+        boolean isDiscarded = false;
 
+        Tile[] currTiles = this.players[currentPlayerIndex].getTiles();
+        
+        for(int i = 0 ; i < currTiles.length-1 && !isDiscarded ; i++)
+        {
+            if(currTiles[i].matchingTiles(currTiles[i+1]))
+            {
+                this.discardTile(i);
+                isDiscarded = true;
+            }
+        }
+
+        if(!isDiscarded)
+        {
+            int longestIndex = players[currentPlayerIndex].getIndexOfLongestChain();
+            int longestLength = players[currentPlayerIndex].findLongestChain();
+            if(longestIndex == 0)
+            {
+                this.discardTile(players[currentPlayerIndex].getNumberOfTiles()-1);
+            }
+            else if(longestIndex + longestLength == players[currentPlayerIndex].getNumberOfTiles())
+            {
+                this.discardTile(0);
+            }
+            else
+            {
+                int firstChainEnding = 0;
+                while(currTiles[firstChainEnding].canFormChainWith(currTiles[firstChainEnding+1]))
+                {
+                    firstChainEnding++;
+                }
+                int lastChainBeginning = players[currentPlayerIndex].getNumberOfTiles()-1;
+                while(currTiles[lastChainBeginning].canFormChainWith(currTiles[lastChainBeginning-1]))
+                {
+                    lastChainBeginning--;
+                }
+                if(currTiles[longestIndex].getValue()-currTiles[firstChainEnding].getValue() < currTiles[lastChainBeginning].getValue() - currTiles[longestIndex+longestLength-1].getValue())
+                {
+                    this.discardTile(players[currentPlayerIndex].getNumberOfTiles()-1);
+                }
+                else
+                {
+                    this.discardTile(0);
+                }
+            }
+        }
     }
 
     /*

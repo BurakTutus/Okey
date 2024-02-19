@@ -32,6 +32,14 @@ public class Player {
         return longestChain;
     }
 
+    //returns the beginning index of longest chain (added by Ahmet Eren to use in Simplified class. May be implemented later.)
+    public int getIndexOfLongestChain()
+    {
+        int index = 0;
+
+        return index;
+    }
+
     /*
      * TODO: removes and returns the tile in given index position
      */
@@ -82,5 +90,10 @@ public class Player {
 
     public String getName() {
         return playerName;
+    }
+
+    public int getNumberOfTiles()
+    {
+        return this.numberOfTiles;
     }
 }
