@@ -82,6 +82,7 @@ public class ApplicationMain {
 
                     while(playerChoice>14 || playerChoice<0){
                         System.out.println("Index is not valid");
+                        System.out.print("Discard the tile in index: ");
                         playerChoice = sc.nextInt();
                     }
                     game.discardTile(playerChoice);
