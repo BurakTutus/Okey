@@ -80,8 +80,12 @@ public class SimplifiedOkeyGame {
         return lastile.toString();
     }
 
-    /*
+    /**
+     * 
      * TODO: should randomly shuffle the tiles array before game starts
+     * 
+     * @author Ahmet Eren Gözübenli
+     * DONE: get two random index and changes these two tiles. repeats it 200 times(or any other wanted count)
      */
     public void shuffleTiles() {
         for(int i = 0 ; i<200;i++)
@@ -125,12 +129,15 @@ public class SimplifiedOkeyGame {
         return tileCount != 0;
     }
 
-    /*
+    /**
      * TODO: pick a tile for the current computer player using one of the following:
      * - picking from the tiles array using getTopTile()
      * - picking from the lastDiscardedTile using getLastDiscardedTile()
      * you should check if getting the discarded tile is useful for the computer
      * by checking if it increases the longest chain length, if not get the top tile
+     * 
+     * @author Ahmet Eren Gözübenli
+     * DONE: picks the last discarded tile first. If it does not increase the longest chain length, remove this tile and getTopTile.
      */
     public void pickTileForComputer() {
         int tempChain = players[currentPlayerIndex].findLongestChain();
@@ -142,9 +149,13 @@ public class SimplifiedOkeyGame {
         }
     }
 
-    /*
+    /**
      * TODO: Current computer player will discard the least useful tile.
      * you may choose based on how useful each tile is
+     * 
+     * @author Ahmet Eren Gözübenli
+     * DONE: First checks the repeated tile. If there are same two tile, discards it.
+     * If not, discards the farest tile of farest set to the longest chain.
      */
     public void discardTileForComputer() {
         boolean isDiscarded = false;

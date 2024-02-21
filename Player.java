@@ -67,7 +67,7 @@ public class Player {
                 done = true;
             }
         }
-
+        this.numberOfTiles++;
     }
 
     /*
