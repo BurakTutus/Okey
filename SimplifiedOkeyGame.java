@@ -34,14 +34,16 @@ public class SimplifiedOkeyGame {
     public void distributeTilesToPlayers() {
         for(int i = 0; i < 15; i++)
         {
-            players[0].playerTiles[i] = tiles[i];
+            //players[0].playerTiles[i] = tiles[i];
+            players[0].addTile(tiles[i]);
         }
         players[0].numberOfTiles = 15;
         for(int i = 1; i < 4; i++)
         {
             for(int j = 0; j < 14; j++)
             {
-                players[i].playerTiles[j] = tiles[14*i + 1 + j];
+                //players[i].playerTiles[j] = tiles[14*i + 1 + j];
+                players[i].addTile(tiles[14 * i + 1 + j]);
             }
             players[i].numberOfTiles = 14;
         }
