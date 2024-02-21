@@ -41,7 +41,7 @@ public class SimplifiedOkeyGame {
         {
             for(int j = 0; j < 14; j++)
             {
-                players[i].playerTiles[j] = tiles[15 + j];
+                players[i].playerTiles[j] = tiles[14*i + 1 + j];
             }
             players[i].numberOfTiles = 14;
         }
