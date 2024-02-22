@@ -19,48 +19,57 @@ public class Player {
      * @author Eren Özilgili
      * @return true or false according to the length of the chain
      * 
-     * DONE: Assuming winning will be checked with 15 tiles in hand. Looks at the players tile and first of all assigns the first index as the samllest tile of the
-     * possible chain. Then we will compare the smallestOfChain with the next tile to determine if we will increment
-     * the lenOfChain. If we do increment, then loop will start allover. If we see that next tile is smaller than our present
-     * tile (smallestOfCHain) then we will assign this smaller tile to be our new smallestOfChain tile. Then we will assign
-     * lenOfChain to 1 start allover and start looking for new chain starting from new smallOfCHain. We will exit the loop if
-     * at some point our chain is of length 14 and return true; otherwise return false.
      */
     public boolean checkWinning() {
-        Tile smallestOfChain = this.playerTiles[0];//Assigning the first tile to compare in the below loop;
-        int lenOfChain = 1;//As of start, we have only 1 tile so the length of chain is 1 for now;
-
-        for(int i = 1; i < this.playerTiles.length; i++){
-            if(lenOfChain == 14){
-                break;
-            }
-            else if(this.playerTiles[i].compareTo(smallestOfChain) > 0){
-                smallestOfChain = this.playerTiles[i];
-                lenOfChain++;
-            }
-            else{
-                if(lenOfChain < 14){
-                    lenOfChain = 1;
-                    smallestOfChain = this.playerTiles[i];
-                }
-                
-            }
-
-        }
-
-        if(lenOfChain >= 14){ return true; }
+        //Takes the longest chain length and checks the winning situation
+        if(findLongestChain() >= 14){ return true; }
         else{ return false; }
         
     }
 
-    /*
+    /**
      * TODO: used for finding the longest chain in this player hand
      * this method should iterate over playerTiles to find the longest chain
      * of consecutive numbers, used for checking the winning condition
      * and also for determining the winner if tile stack has no tiles
+     * 
+     * @author Eren Özilgili
+     * @return longest chain length
+     * 
+     * DONE:Looks at the players tile and first of all assigns the first index as the comparisonTile.
+     * Then we will compare the comparisonTile
+     * with the next tile to determine if we will increment (next tile has a bigger value) the longestChain,
+     * let it stay the same (next Tile has the same value),
+     * or set it to 1 (smallerTile has come up).
+     * 
      */
     public int findLongestChain() {
-        int longestChain = 0;
+        Tile comparisonTile = this.playerTiles[0];//Assigning the first tile to compare in the below loop;
+        int lenOfChain = 1;//As of start, we have only 1 tile so the length of chain is 1 for now;
+        int longestChain = 1;//Holds the longest chain length;
+
+        for(int i = 1; i < this.playerTiles.length; i++){
+            if(this.playerTiles[i].compareTo(comparisonTile) > 0){//Need to increment the legth of the chain
+                lenOfChain++;//Length of the chain is increased;
+            }
+            else if(this.playerTiles[i].compareTo(comparisonTile) < 0){//The chain is no longer valid, next tile is smaller then the current tile;
+                if(lenOfChain >= longestChain){//Record the chain length if it is the biggest one before resetting chain length;
+                    longestChain = lenOfChain;
+                }
+                lenOfChain = 1;//Chain is broken, reset the chain length, search will start all over
+            }
+            else{
+                //Length of the chain needs to stay the same. So no operations; 
+            }
+
+            comparisonTile = this.playerTiles[i];//comparisonTile for the next index will be this;
+
+            //This will keep track of the longest chain;
+            if(lenOfChain >= longestChain){
+                longestChain = lenOfChain;
+            }
+
+        }
 
         return longestChain;
     }
