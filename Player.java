@@ -9,15 +9,48 @@ public class Player {
         numberOfTiles = 0; // currently this player owns 0 tiles, will pick tiles at the beggining of the game
     }
 
-    /*
+    /**
      * TODO: checks this player's hand to determine if this player is winning
      * the player with a complete chain of 14 consecutive numbers wins the game
      * note that the player whose turn is now draws one extra tile to have 15 tiles in hand,
      * and the extra tile does not disturb the longest chain and therefore the winning condition
      * check the assigment text for more details on winning condition
+     * 
+     * @author Eren Özilgili
+     * @return true or false according to the length of the chain
+     * 
+     * DONE: Assuming winning will be checked with 15 tiles in hand. Looks at the players tile and first of all assigns the first index as the samllest tile of the
+     * possible chain. Then we will compare the smallestOfChain with the next tile to determine if we will increment
+     * the lenOfChain. If we do increment, then loop will start allover. If we see that next tile is smaller than our present
+     * tile (smallestOfCHain) then we will assign this smaller tile to be our new smallestOfChain tile. Then we will assign
+     * lenOfChain to 1 start allover and start looking for new chain starting from new smallOfCHain. We will exit the loop if
+     * at some point our chain is of length 14 and return true; otherwise return false.
      */
     public boolean checkWinning() {
-        return false;
+        Tile smallestOfChain = this.playerTiles[0];//Assigning the first tile to compare in the below loop;
+        int lenOfChain = 1;//As of start, we have only 1 tile so the length of chain is 1 for now;
+
+        for(int i = 1; i < this.playerTiles.length; i++){
+            if(lenOfChain == 14){
+                break;
+            }
+            else if(this.playerTiles[i].compareTo(smallestOfChain) > 0){
+                smallestOfChain = this.playerTiles[i];
+                lenOfChain++;
+            }
+            else{
+                if(lenOfChain < 14){
+                    lenOfChain = 1;
+                    smallestOfChain = this.playerTiles[i];
+                }
+                
+            }
+
+        }
+
+        if(lenOfChain >= 14){ return true; }
+        else{ return false; }
+        
     }
 
     /*
