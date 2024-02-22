@@ -79,7 +79,11 @@ public class ApplicationMain {
                     playerChoice = sc.nextInt();
 
                     // TODO: make sure the given index is correct, should be 0 <= index <= 14
-
+                    /**
+                    * @author Mehmet Efe Mutlu
+                    * Done
+                    */
+                    //This checks if the tile index is valid and if it is not it asks it again
                     while(playerChoice>14 || playerChoice<0){
                         System.out.println("Index is not valid");
                         System.out.print("Discard the tile in index: ");

@@ -55,7 +55,12 @@ public class SimplifiedOkeyGame {
      * (this simulates picking up the tile discarded by the previous player)
      * it should return the toString method of the tile so that we can print what we picked
      */
+    /**
+     * @author Mehmet Efe Mutlu
+     * Done
+     */
     public String getLastDiscardedTile() {
+        //Chooses th current player and adds the lastDiscardedTile to the player's hand
         this.players[getCurrentPlayerIndex()].addTile(lastDiscardedTile);
         return lastDiscardedTile.toString();
     }
@@ -104,18 +109,30 @@ public class SimplifiedOkeyGame {
      * TODO: check if game still continues, should return true if current player
      * finished the game. use checkWinning method of the player class to determine
      */
+    /**
+     * @author Mehmet Efe Mutlu
+     * Done
+     */
     public boolean didGameFinish() {
+        //Use check winning method to control if the game had finished
         return players[getCurrentPlayerIndex()].checkWinning();
     }
 
     /* TODO: finds the player who has the highest number for the longest chain
      * if multiple players have the same length may return multiple players
      */
+    /**
+     * @author Mehmet Efe Mutlu
+     * Done
+     */
     public Player[] getPlayerWithHighestLongestChain() {
         Player[] winners = new Player[1];
 
+        //Decides winner
         winners[0] = players[0];
+        //Iterates over the players array to check the winner
         for(int i=1; i<players.length; i++){
+            //Checks the longest chain and according to the longest chain decides it
             if(winners[0].findLongestChain()<players[i].findLongestChain()){
                 winners[0] = players[i];
             }
@@ -214,7 +231,12 @@ public class SimplifiedOkeyGame {
      * this should set lastDiscardedTile variable and remove that tile from
      * that player's tiles
      */
+    /**
+     * @author Mehmet Efe Mutlu
+     * Done
+     */
     public void discardTile(int tileIndex) {
+        //Discards the player's tile according to the choice and assignss to the lastDiscardedTile
         lastDiscardedTile = players[getCurrentPlayerIndex()].getAndRemoveTile(tileIndex);
     }
 
