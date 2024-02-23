@@ -83,10 +83,26 @@ public class Player {
     }
 
     /*
-     * TODO: removes and returns the tile in given index position
+     * removes and returns the tile in given index position
+     * @author Hikmet 
      */
     public Tile getAndRemoveTile(int index) {
-        return null;
+        if(index < 0 || index >= playerTiles.length) {
+            throw new IllegalArgumentException("Index out of bounds for the player's hand");
+        }
+
+        Tile tempTile = playerTiles[index];
+
+        //Shifts all other remaining tiles to the left
+        for(int i = index; i < playerTiles.length-1; i++){
+            playerTiles[i] = playerTiles[i+1];
+        }
+
+        this.numberOfTiles--;
+
+        playerTiles[numberOfTiles] = null;
+
+        return tempTile;
     }
 
     /*
