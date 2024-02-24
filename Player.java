@@ -118,21 +118,23 @@ public class Player {
         //Define a boolean flag
         boolean done = false;
         //This loop searches the correct position for the tile to be added
-        for(int i=0; i<playerTiles.length; i++){
-            //using compareTo method 
-            //If the index is correct, puts the given tile to the index
-            if(playerTiles[i].compareTo(t)<=0 && !done){
-                Tile tempTile = playerTiles[i];
-                playerTiles[i] = t;
-                
-                //Shifts all other remaining tiles to the right
-                for(int j=i; j<playerTiles.length-1; j++){
-                    Tile tempTile2 = playerTiles[j+1];
-                    playerTiles[j+1] = tempTile;
-                    tempTile = tempTile2;
+        if(numberOfTiles!=0){
+            for(int i=0; i<getNumberOfTiles(); i++){
+                //using compareTo method 
+                //If the index is correct, puts the given tile to the index
+                if(playerTiles[i].compareTo(t)<=0 && !done){
+                    Tile tempTile = playerTiles[i];
+                    playerTiles[i] = t;
+                    
+                    //Shifts all other remaining tiles to the right
+                    for(int j=i; j<playerTiles.length-1; j++){
+                        Tile tempTile2 = playerTiles[j+1];
+                        playerTiles[j+1] = tempTile;
+                        tempTile = tempTile2;
+                    }
+                    //When shifting is done, reverses the flag and makes sure that it will not happen again
+                    done = true;
                 }
-                //When shifting is done, reverses the flag and makes sure that it will not happen again
-                done = true;
             }
         }
         //Increases the numberOfTiles by one
