@@ -49,10 +49,10 @@ public class Player {
         int longestChain = 1;//Holds the longest chain length;
 
         for(int i = 1; i < this.playerTiles.length; i++){
-            if(this.playerTiles[i].compareTo(comparisonTile) > 0){//Need to increment the legth of the chain
+            if(this.playerTiles[i].compareTo(comparisonTile) < 0){//Need to increment the length of the chain
                 lenOfChain++;//Length of the chain is increased;
             }
-            else if(this.playerTiles[i].compareTo(comparisonTile) < 0){//The chain is no longer valid, next tile is smaller then the current tile;
+            else if(this.playerTiles[i].compareTo(comparisonTile) > 0){//The chain is no longer valid, next tile is smaller then the current tile;
                 if(lenOfChain >= longestChain){//Record the chain length if it is the biggest one before resetting chain length;
                     longestChain = lenOfChain;
                 }
@@ -82,7 +82,7 @@ public class Player {
         return index;
     }
 
-    /*
+    /**
      * removes and returns the tile in given index position
      * @author Hikmet 
      */
