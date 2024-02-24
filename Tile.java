@@ -22,10 +22,10 @@ public class Tile {
      * return -1 if the given tile has higher value
      */
     public int compareTo(Tile t) {
-       if( t.value < value ){
+       if( t.value < this.value ){
            return 1;
        }
-       else if(value == t.value){
+       else if(this.value == t.value){
            return 0;
        }
        else{

@@ -48,11 +48,12 @@ public class Player {
         int lenOfChain = 1;//As of start, we have only 1 tile so the length of chain is 1 for now;
         int longestChain = 1;//Holds the longest chain length;
 
-        for(int i = 1; i < this.playerTiles.length; i++){
-            if(this.playerTiles[i].compareTo(comparisonTile) < 0){//Need to increment the length of the chain
+        for(int i = 1; i < this.getNumberOfTiles(); i++){
+            if(this.playerTiles[i].canFormChainWith(comparisonTile)){//Need to increment the length of the chain
                 lenOfChain++;//Length of the chain is increased;
             }
-            else if(this.playerTiles[i].compareTo(comparisonTile) > 0){//The chain is no longer valid, next tile is smaller then the current tile;
+            else if(this.playerTiles[i].getValue() != comparisonTile.getValue())
+            {//The chain is no longer valid, next tile is smaller then the current tile;
                 if(lenOfChain >= longestChain){//Record the chain length if it is the biggest one before resetting chain length;
                     longestChain = lenOfChain;
                 }
@@ -115,27 +116,46 @@ public class Player {
      * Done
      */
     public void addTile(Tile t) {
-        //Define a boolean flag
-        boolean done = false;
+        
         //This loop searches the correct position for the tile to be added
         if(numberOfTiles!=0){
-            for(int i=0; i<getNumberOfTiles(); i++){
+            //Define a boolean flag
+            boolean done = false;
+            for(int i=0; i<getNumberOfTiles(); i++)
+            {
                 //using compareTo method 
                 //If the index is correct, puts the given tile to the index
-                if(playerTiles[i].compareTo(t)<=0 && !done){
-                    Tile tempTile = playerTiles[i];
-                    playerTiles[i] = t;
+                if(playerTiles[i].compareTo(t)>0 && !done)
+                {
+                    Tile tempTile = new Tile(playerTiles[i].getValue());
+                    playerTiles[i] = new Tile(t.getValue());
                     
                     //Shifts all other remaining tiles to the right
-                    for(int j=i; j<playerTiles.length-1; j++){
-                        Tile tempTile2 = playerTiles[j+1];
-                        playerTiles[j+1] = tempTile;
-                        tempTile = tempTile2;
+                    for(int j=i; j<getNumberOfTiles(); j++){
+                        if(this.playerTiles[j+1] != null)
+                        {
+                            Tile tempTile2 = new Tile(playerTiles[j+1].getValue());
+                            playerTiles[j+1] = new Tile(tempTile.getValue());
+                            tempTile = new Tile(tempTile2.getValue());
+                        }
+                        else
+                        {
+                            this.playerTiles[j+1] = new Tile(tempTile.getValue());
+                        }
+                        
                     }
                     //When shifting is done, reverses the flag and makes sure that it will not happen again
                     done = true;
                 }
             }
+            if(this.playerTiles[this.getNumberOfTiles()] == null)
+            {
+                this.playerTiles[this.getNumberOfTiles()] = new Tile(t.getValue());
+            }
+        }
+        else
+        {
+            this.playerTiles[0] = new Tile(t.getValue());
         }
         //Increases the numberOfTiles by one
         this.numberOfTiles++;
