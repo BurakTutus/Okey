@@ -78,8 +78,31 @@ public class Player {
     //returns the beginning index of longest chain (added by Ahmet Eren to use in Simplified class. May be implemented later.)
     public int getIndexOfLongestChain()
     {
-        int index = 0;
+        int lengthOfLongest = this.findLongestChain();
+        int trackNumber = 1;//Used to check if our chain is same as length of the longest chain;
+        int index = 0;//Holds the index;
 
+        for(int i = 0; i < this.numberOfTiles - 1; i++){
+            //If we achieve the length of the longest chain, then we find our index;
+            if(trackNumber == lengthOfLongest){
+                break;
+            }
+
+            if(this.playerTiles[i].canFormChainWith(this.playerTiles[i + 1])){//trackNUmber is incremented in case chain is continuing;
+                trackNumber++;
+            }
+            else if(this.playerTiles[i].compareTo(this.playerTiles[i + 1]) < 0){//Chain is broken
+                trackNumber = 1;
+                //Starting index of the longest chain should be the following index;
+                index = i + 1;
+            }
+            else{
+                //Consecutive tiles are equal, so trackNUmber is not incremented.
+            }
+
+        }
+
+        //Returning the starting position of the index;
         return index;
     }
 
