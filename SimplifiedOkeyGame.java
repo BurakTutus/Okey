@@ -85,6 +85,8 @@ public class SimplifiedOkeyGame {
             tiles[i] = temp[i];
         }
         this.players[getCurrentPlayerIndex()].addTile(lastile);
+        this.tileCount--;
+        
         return lastile.toString();
     }
 
