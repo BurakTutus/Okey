@@ -102,6 +102,9 @@ public class ApplicationMain {
                         // determine the winner based on longest chain lengths of the players
                         // use getPlayerWithHighestLongestChain method of game for this task
 
+                        /**
+                         * @author Eren Özilgili
+                         */
                         //Holding the winning players in an array;
                         Player[] winners = game.getPlayerWithHighestLongestChain();
 
@@ -141,6 +144,9 @@ public class ApplicationMain {
                         // determine the winner based on longest chain lengths of the players
                         // use getPlayerWithHighestLongestChain method of game for this task
 
+                        /**
+                         * @author Eren Özilgili
+                         */
                         //Holding the winning players in an array;
                         Player[] winners = game.getPlayerWithHighestLongestChain();
 
