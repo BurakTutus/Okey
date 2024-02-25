@@ -1,3 +1,4 @@
+
 public class SimplifiedOkeyGame {
 
     Player[] players;
@@ -126,17 +127,37 @@ public class SimplifiedOkeyGame {
      * Done
      */
     public Player[] getPlayerWithHighestLongestChain() {
-        Player[] winners = new Player[1];
 
-        //Decides winner
-        winners[0] = players[0];
+        int count = 0;
+
+        int longestChain = 0;
+
+        for(int i = 0 ; i < players.length ; i++)
+        {
+            if(players[i].findLongestChain() > longestChain)
+            {
+                longestChain = players[i].findLongestChain();
+            }
+        }
+        
         //Iterates over the players array to check the winner
-        for(int i=1; i<players.length; i++){
+        for(int i=0; i<players.length; i++){
             //Checks the longest chain and according to the longest chain decides it
-            if(winners[0].findLongestChain()<players[i].findLongestChain()){
-                winners[0] = players[i];
+            if(longestChain == players[i].findLongestChain()){
+                count++;
             }
 
+        }
+
+        Player[] winners = new Player[count];
+
+        for(int i = 0, j = 0; i < players.length ; i++)
+        {
+            if(players[i].findLongestChain() == longestChain)
+            {
+                winners[j] = players[i];
+                j++;
+            }
         }
         return winners;
     }

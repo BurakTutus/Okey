@@ -120,23 +120,15 @@ public class ApplicationMain {
                     game.displayCurrentPlayersTiles();
                 }
 
-                game.displayDiscardInformation();
-
                 // computer picks a tile from tile stack or other player's discard
                 game.pickTileForComputer();
-
-                if(devModeOn) {
-                    game.displayCurrentPlayersTiles();
-                }
 
                 gameContinues = !game.didGameFinish() && game.hasMoreTileInStack();
 
                 if(gameContinues) {
                     // if game did not end computer should discard
                     game.discardTileForComputer();
-                    if(devModeOn) {
-                        game.displayCurrentPlayersTiles();
-                    }
+                    
                     game.passTurnToNextPlayer();
                 }
                 else{
