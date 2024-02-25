@@ -75,7 +75,7 @@ public class Player {
         return longestChain;
     }
 
-    //returns the beginning index of longest chain (added by Ahmet Eren to use in Simplified class. May be implemented later.)
+    //returns the beginning index of longest chain (added by Ahmet Eren to use in Simplified class. Implemented by Eren and Ahmet)
     public int getIndexOfLongestChain()
     {
         int lengthOfLongest = this.findLongestChain();
